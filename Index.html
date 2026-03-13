@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChicChac | سيكان البنات</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #e8b4b8;
+    --deep: #2c1810;
+    --cream: #fdf6f0;
+    --blush: #f5ddd9;
+    --mauve: #c4878e;
+    --gold: #c9a96e;
+    --dark: #1a0f0a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(253,246,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,135,142,0.2);
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: var(--deep);
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--mauve); font-style: italic; }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    text-decoration: none; color: var(--deep);
+    font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  nav ul a:hover { color: var(--mauve); }
+  .nav-icons { display: flex; gap: 1.2rem; align-items: center; }
+  .nav-icon {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.3rem; color: var(--deep);
+    position: relative; transition: color 0.3s;
+  }
+  .nav-icon:hover { color: var(--mauve); }
+  .cart-count {
+    position: absolute; top: -6px; right: -6px;
+    background: var(--mauve); color: white;
+    border-radius: 50%; width: 18px; height: 18px;
+    font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+    font-family: 'Tajawal'; font-weight: 700;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(232,180,184,0.3) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-text {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 5rem;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--blush);
+    color: var(--mauve);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--deep);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--mauve);
+  }
+  .hero p {
+    font-size: 1.05rem;
+    color: #6b4c44;
+    line-height: 1.8;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--deep);
+    color: var(--cream);
+    border: none; cursor: pointer;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Tajawal'; font-size: 1rem; font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--mauve);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(196,135,142,0.4);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--deep);
+    border: 1.5px solid var(--deep);
+    cursor: pointer;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Tajawal'; font-size: 1rem; font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover {
+    border-color: var(--mauve);
+    color: var(--mauve);
+    transform: translateY(-2px);
+  }
+  .hero-image {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: 3rem 3rem 3rem 1rem;
+  }
+  .hero-img-wrap {
+    width: 100%; max-width: 460px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--blush) 0%, var(--rose) 50%, var(--mauve) 100%);
+    border-radius: 200px 200px 160px 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(196,135,142,0.3);
+  }
+  .hero-img-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(44,24,16,0.1));
+  }
+  .floating-tag {
+    position: absolute;
+    background: white;
+    border-radius: 14px;
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .floating-tag.one { top: 20%; right: -20px; }
+  .floating-tag.two { bottom: 25%; left: -20px; color: var(--mauve); }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--deep);
+    color: var(--cream);
+    padding: 0.8rem 0;
+    overflow: hidden;
+  }
+  .marquee {
+    display: flex; gap: 3rem;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee span {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .marquee span::after { content: '✦'; color: var(--rose); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* CATEGORIES */
+  .section { padding: 5rem 4rem; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: var(--mauve);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--deep);
+  }
+  .section-title em { font-style: italic; color: var(--mauve); }
+
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .cat-card {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+    transition: transform 0.4s;
+  }
+  .cat-card:hover { transform: translateY(-8px); }
+  .cat-card:hover .cat-img { transform: scale(1.05); }
+  .cat-img {
+    width: 100%; height: 100%;
+    transition: transform 0.6s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+  }
+  .cat-card:nth-child(1) .cat-img { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+  .cat-card:nth-child(2) .cat-img { background: linear-gradient(135deg, #e8eaf6, #9fa8da); }
+  .cat-card:nth-child(3) .cat-img { background: linear-gradient(135deg, #fff3e0, #ffcc80); }
+  .cat-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(44,24,16,0.8) 0%, transparent 100%);
+    padding: 2rem 1.5rem 1.5rem;
+    color: white;
+  }
+  .cat-overlay h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.3rem; }
+  .cat-overlay p { font-size: 0.85rem; opacity: 0.8; }
+
+  /* PRODUCTS */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.35s;
+    box-shadow: 0 2px 15px rgba(44,24,16,0.06);
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(196,135,142,0.2);
+  }
+  .product-card:hover .product-actions { opacity: 1; transform: translateY(0); }
+  .product-img {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .p1 { background: linear-gradient(135deg, #fce4ec, #ef9a9a); }
+  .p2 { background: linear-gradient(135deg, #f3e5f5, #ce93d8); }
+  .p3 { background: linear-gradient(135deg, #e8f5e9, #a5d6a7); }
+  .p4 { background: linear-gradient(135deg, #e3f2fd, #90caf9); }
+  .p5 { background: linear-gradient(135deg, #fff8e1, #ffe082); }
+  .p6 { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+  .p7 { background: linear-gradient(135deg, #e0f7fa, #80deea); }
+  .p8 { background: linear-gradient(135deg, #fbe9e7, #ff8a65); }
+  .product-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--mauve); color: white;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .product-actions {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; gap: 0.5rem; padding: 1rem;
+    opacity: 0; transform: translateY(10px);
+    transition: all 0.3s;
+  }
+  .add-cart {
+    flex: 1;
+    background: var(--deep); color: white;
+    border: none; border-radius: 10px;
+    padding: 0.6rem;
+    font-family: 'Tajawal'; font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .add-cart:hover { background: var(--mauve); }
+  .wishlist-btn {
+    background: white; border: 1.5px solid var(--blush);
+    border-radius: 10px; padding: 0.6rem 0.8rem;
+    cursor: pointer; font-size: 1rem;
+    transition: all 0.3s;
+  }
+  .wishlist-btn:hover { border-color: var(--mauve); }
+  .product-info { padding: 1rem 1.2rem 1.2rem; }
+  .product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .product-sub { font-size: 0.8rem; color: #9e7d77; margin-bottom: 0.6rem; }
+  .product-price { display: flex; align-items: center; gap: 0.8rem; }
+  .price-new { font-weight: 700; font-size: 1.05rem; color: var(--deep); }
+  .price-old { font-size: 0.85rem; color: #bbb; text-decoration: line-through; }
+  .stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 0.3rem; }
+
+  /* BANNER */
+  .promo-banner {
+    margin: 0 4rem 4rem;
+    background: var(--deep);
+    border-radius: 24px;
+    padding: 3.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .promo-banner::before {
+    content: '';
+    position: absolute; right: -80px; top: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,180,184,0.15), transparent 60%);
+    border-radius: 50%;
+  }
+  .promo-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: white; margin-bottom: 0.8rem;
+  }
+  .promo-text h2 em { font-style: italic; color: var(--rose); }
+  .promo-text p { color: rgba(255,255,255,0.7); font-size: 1rem; }
+  .promo-code {
+    background: rgba(255,255,255,0.08);
+    border: 1.5px dashed rgba(232,180,184,0.4);
+    border-radius: 14px;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+  }
+  .promo-code p { color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-bottom: 0.4rem; }
+  .promo-code .code {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--rose);
+    letter-spacing: 6px;
+  }
+  .promo-code small { color: rgba(255,255,255,0.5); font-size: 0.75rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    padding: 4rem 4rem 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .logo { color: white; display: block; margin-bottom: 1rem; font-size: 1.5rem; }
+  .footer-brand p { font-size: 0.9rem; line-height: 1.7; max-width: 240px; }
+  .footer-col h4 {
+    color: white; font-size: 0.85rem;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none; font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+  .footer-col ul a:hover { color: var(--rose); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.82rem;
+  }
+  .social-links { display: flex; gap: 0.8rem; }
+  .social-link {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 1rem;
+    transition: background 0.3s;
+  }
+  .social-link:hover { background: var(--mauve); }
+
+  /* CART DRAWER */
+  .cart-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 200; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-drawer {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: 380px; background: white;
+    z-index: 201;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--blush);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+  .close-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.5rem; color: var(--deep);
+    transition: color 0.2s;
+  }
+  .close-btn:hover { color: var(--mauve); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem; }
+  .cart-item {
+    display: flex; gap: 1rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--blush);
+  }
+  .cart-item-img {
+    width: 70px; height: 70px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .cart-item-price { color: var(--mauve); font-weight: 700; }
+  .cart-item-qty {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .qty-btn {
+    width: 26px; height: 26px;
+    border: 1px solid var(--blush); border-radius: 50%;
+    background: none; cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .qty-btn:hover { background: var(--mauve); border-color: var(--mauve); color: white; }
+  .cart-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--blush);
+  }
+  .cart-total {
+    display: flex; justify-content: space-between;
+    font-weight: 700; font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .checkout-btn {
+    width: 100%;
+    background: var(--deep); color: white;
+    border: none; border-radius: 14px;
+    padding: 1rem;
+    font-family: 'Tajawal'; font-size: 1rem; font-weight: 600;
+    cursor: pointer; letter-spacing: 1px;
+    transition: all 0.3s;
+  }
+  .checkout-btn:hover { background: var(--mauve); }
+  .empty-cart { text-align: center; padding: 3rem; color: #bbb; }
+  .empty-cart span { font-size: 4rem; display: block; margin-bottom: 1rem; }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--deep); color: white;
+    padding: 0.8rem 2rem; border-radius: 50px;
+    font-size: 0.9rem; font-weight: 500;
+    z-index: 300; transition: transform 0.4s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { display: none; }
+    .hero-text { padding: 2rem; }
+    .categories { grid-template-columns: 1fr 1fr; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .section { padding: 3rem 1.5rem; }
+    .promo-banner { flex-direction: column; gap: 2rem; margin: 0 1.5rem 3rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Chic<span>Chac</span></div>
+  <ul>
+    <li><a href="#">الرئيسية</a></li>
+    <li><a href="#">الكولكشن</a></li>
+    <li><a href="#">العروض</a></li>
+    <li><a href="#">تواصل معنا</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon">🔍</button>
+    <button class="nav-icon">♡</button>
+    <button class="nav-icon" onclick="openCart()">
+      🛍️
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-badge">✦ كولكشن 2025</span>
+    <h1>سيكان <em>أنيق</em><br>بستايل مختلف</h1>
+    <p>اكتشفي أجمل تشكيلة سيكان للبنات — راحة، أناقة، وجودة عالية في كل قطعة. من النوم للراحة البيتية، عندنا كل ما تحتاجيه.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="scrollToProducts()">تسوقي الآن</button>
+      <button class="btn-outline">شوفي الكولكشن</button>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-img-wrap">
+      🌸
+      <div class="floating-tag one">✨ توصيل مجاني</div>
+      <div class="floating-tag two">💝 جودة ممتازة</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>توصيل مجاني من 299 درهم</span>
+    <span>جودة مضمونة 100%</span>
+    <span>إرجاع مجاني خلال 14 يوم</span>
+    <span>دفع آمن ومضمون</span>
+    <span>كولكشن جديد أسبوعياً</span>
+    <span>توصيل مجاني من 299 درهم</span>
+    <span>جودة مضمونة 100%</span>
+    <span>إرجاع مجاني خلال 14 يوم</span>
+    <span>دفع آمن ومضمون</span>
+    <span>كولكشن جديد أسبوعياً</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">تسوقي بستايل</span>
+    <h2 class="section-title">الأقسام <em>الرئيسية</em></h2>
+  </div>
+  <div class="categories">
+    <div class="cat-card">
+      <div class="cat-img p1">🌸</div>
+      <div class="cat-overlay">
+        <h3>سيكان النوم</h3>
+        <p>راحة طول الليل</p>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img" style="background: linear-gradient(135deg, #e8eaf6, #9fa8da);">🦋</div>
+      <div class="cat-overlay">
+        <h3>سيكان البيت</h3>
+        <p>أناقة في كل لحظة</p>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img" style="background: linear-gradient(135deg, #fff3e0, #ffcc80);">✨</div>
+      <div class="cat-overlay">
+        <h3>العروض الخاصة</h3>
+        <p>تخفيضات لغاية 50%</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products" style="padding-top: 0;">
+  <div class="section-header">
+    <span class="section-label">الأكثر مبيعاً</span>
+    <h2 class="section-title">منتجات <em>مختارة</em> لك</h2>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <div class="promo-text">
+    <h2>خصم <em>20%</em> على أول طلب</h2>
+    <p>اشتركي في النيوزلتر وكوني أول من يعرف عن العروض الحصرية</p>
+  </div>
+  <div class="promo-code">
+    <p>كودك الخاص</p>
+    <div class="code">CHIC20</div>
+    <small>صالح لمدة 7 أيام</small>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Chic<span style="color:var(--rose);font-style:italic">Chac</span></span>
+      <p>متجرك المفضل للسيكان النسائي — جودة لا تُضاهى بأسعار في المتناول</p>
+    </div>
+    <div class="footer-col">
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#">الكولكشن</a></li>
+        <li><a href="#">العروض</a></li>
+        <li><a href="#">حسابي</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>خدمة العملاء</h4>
+      <ul>
+        <li><a href="#">تتبع طلبك</a></li>
+        <li><a href="#">الإرجاع والاستبدال</a></li>
+        <li><a href="#">سياسة الشحن</a></li>
+        <li><a href="#">اتصل بنا</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>تواصلي معنا</h4>
+      <ul>
+        <li><a href="#">📸 Instagram</a></li>
+        <li><a href="#">📘 Facebook</a></li>
+        <li><a href="#">📱 WhatsApp</a></li>
+        <li><a href="#">🎵 TikTok</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ChicChac — جميع الحقوق محفوظة</p>
+    <div class="social-links">
+      <a class="social-link" href="#">📸</a>
+      <a class="social-link" href="#">📘</a>
+      <a class="social-link" href="#">🎵</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>🛍️ سلة التسوق</h3>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span>المجموع</span>
+      <span id="cartTotal">0 درهم</span>
+    </div>
+    <button class="checkout-btn">إتمام الشراء →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ تمت الإضافة للسلة</div>
+
+<script>
+const products = [
+  { id:1, name:'بيجامة روز ساتان', cat:'نوم', price:189, old:250, emoji:'🌸', cls:'p1', badge:'جديد', stars:5 },
+  { id:2, name:'لونجري ليلكي', cat:'راحة بيتية', price:145, old:null, emoji:'🦋', cls:'p2', badge:null, stars:4 },
+  { id:3, name:'بيجامة مشجرة ناعمة', cat:'نوم', price:220, old:280, emoji:'🌿', cls:'p3', badge:'-21%', stars:5 },
+  { id:4, name:'سيكان سيلك أزرق', cat:'نوم', price:165, old:null, emoji:'💙', cls:'p4', badge:null, stars:4 },
+  { id:5, name:'بيجامة شتوية دافية', cat:'شتاء', price:299, old:350, emoji:'⭐', cls:'p5', badge:'الأكثر طلباً', stars:5 },
+  { id:6, name:'لونجري وردي ناعم', cat:'راحة بيتية', price:135, old:170, emoji:'🌺', cls:'p6', badge:'-20%', stars:4 },
+  { id:7, name:'طقم سيكان فيروزي', cat:'نوم', price:195, old:null, emoji:'🩵', cls:'p7', badge:'جديد', stars:5 },
+  { id:8, name:'بيجامة كورال مريحة', cat:'راحة بيتية', price:175, old:220, emoji:'🍊', cls:'p8', badge:null, stars:4 },
+];
+
+let cart = [];
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = products.map(p => `
+    <div class="product-card">
+      <div class="product-img ${p.cls}">
+        ${p.emoji}
+        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+        <div class="product-actions">
+          <button class="add-cart" onclick="addToCart(${p.id}, event)">أضيفي للسلة</button>
+          <button class="wishlist-btn">♡</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="stars">${'★'.repeat(p.stars)}${'☆'.repeat(5-p.stars)}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-sub">${p.cat}</div>
+        <div class="product-price">
+          <span class="price-new">${p.price} درهم</span>
+          ${p.old ? `<span class="price-old">${p.old} درهم</span>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addToCart(id, e) {
+  e && e.stopPropagation();
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(c => c.id === id);
+  if (existing) existing.qty++;
+  else cart.push({...product, qty: 1});
+  updateCartUI();
+  showToast(`✓ ${product.name} تمت الإضافة`);
+}
+
+function updateCartUI() {
+  const total = cart.reduce((s, c) => s + c.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+  
+  const cartItems = document.getElementById('cartItems');
+  const cartFooter = document.getElementById('cartFooter');
+  
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<div class="empty-cart"><span>🛍️</span><p>سلتك فارغة</p></div>';
+    cartFooter.style.display = 'none';
+  } else {
+    cartItems.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-img ${item.cls}">${item.emoji}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${item.price} درهم</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    cartFooter.style.display = 'block';
+    const totalPrice = cart.reduce((s, c) => s + c.price * c.qty, 0);
+    document.getElementById('cartTotal').textContent = `${totalPrice} درهم`;
+  }
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(c => c.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+  updateCartUI();
+}
+
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function scrollToProducts() {
+  document.getElementById('products').scrollIntoView({behavior: 'smooth'});
+}
+
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
